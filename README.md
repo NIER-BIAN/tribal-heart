@@ -10,9 +10,9 @@ Its features as as follows.
 
 Scenario: Filter events by selected city
 
-    * Given I am on the events page
-    * When I select a city from the filter options
-    * Then I should see a list of events for the selected city
+- Given I am on the events page
+- When I select a city from the filter options
+- Then I should see a list of events for the selected city
 
 ## Feature 2 of 6: Show/Hide Event Details
 
@@ -20,11 +20,11 @@ Scenario: Filter events by selected city
 
 Scenario: Toggle event details
 
-    * Given I am viewing the list of events
-    * When I click on an event to view details where details are not shown
-    * Then I should see the event details displayed
-    * When I click on an event where details are being shown
-    * Then the event details should be hidden
+- Given I am viewing the list of events
+- When I click on an event to view details where details are not shown
+- Then I should see the event details displayed
+- When I click on an event where details are being shown
+- Then the event details should be hidden
 
 ## Feature 3 of 6: Specify Number of Events
 
@@ -32,9 +32,9 @@ Scenario: Toggle event details
 
 Scenario: Change the number of events displayed
 
-    * Given I am on the events page
-    * When I set the number of events to display to a specified number
-    * Then I should see exactly that number of events listed
+- Given I am on the events page
+- When I set the number of events to display to a specified number
+- Then I should see exactly that number of events listed
 
 ## Feature 4 of 6: Use the App When Offline
 
@@ -42,9 +42,9 @@ Scenario: Change the number of events displayed
 
 Scenario: View previously viewed events offline
 
-    * Given I have previously viewed events while online and I am now offline
-    * When I open the app
-    * Then I should see the list of previously viewed events
+- Given I have previously viewed events while online and I am now offline
+- When I open the app
+- Then I should see the list of previously viewed events
 
 ## Feature 5 of 6: Add an App Shortcut to the Home Screen
 
@@ -52,9 +52,9 @@ Scenario: View previously viewed events offline
 
 Scenario: Add app shortcut to home screen
 
-    * Given I am on the app page
-    * When I select the option to add a shortcut to my home screen
-    * Then the app shortcut should be added to my home screen
+- Given I am on the app page
+- When I select the option to add a shortcut to my home screen
+- Then the app shortcut should be added to my home screen
 
 ## Feature 6 of 6: Display Charts Visualising Event Details
 
@@ -62,6 +62,6 @@ Scenario: Add app shortcut to home screen
 
 Scenario: View event details in a chart format
 
-    * Given I am on the events page
-    * When I select the option to view events in chart format
-    * Then I should see a chart showing the upcoming events in each city
+- Given I am on the events page
+- When I select the option to view events in chart format
+- Then I should see a chart showing the upcoming events in each city
