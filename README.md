@@ -20,7 +20,7 @@ Scenario: List suggestions when a city is being searched for
 - When user starts typing into the city textbox;
 - Then a list of cities (suggestions) that match what they’ve already typed should be displayed.
 
-Scenario 3: Select a city from the suggested list.
+Scenario: Select a city from the suggested list.
 
 - Given user was typing "Ber" in the city textbox AND the list of suggested cities is showing;
 - When the user selects a city (eg. "Berlin, Germany") from the list;
