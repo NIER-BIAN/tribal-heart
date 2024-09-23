@@ -1,0 +1,89 @@
+{
+  "/Users/xuenibian/Desktop/tribal-heart/auth-server": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": false,
+    "isCompose": false,
+    "composeOrgName": null,
+    "composeResolverProviders": {
+      "default-aws-credential-resolver": "<REDACTED>"
+    },
+    "composeServiceName": null,
+    "servicePath": "/Users/xuenibian/Desktop/tribal-heart/auth-server",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "service": "auth-server",
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs14.x",
+        "stage": "dev",
+        "region": "us-east-1",
+        "versionFunctions": true
+      },
+      "functions": {
+        "hello": {
+          "handler": "handler.hello"
+        }
+      }
+    },
+    "serviceRawFile": "service: auth-server\n\nprovider:\n  name: aws\n  runtime: nodejs14.x\n\nfunctions:\n  hello:\n    handler: handler.hello\n",
+    "command": [
+      "config",
+      "credentials"
+    ],
+    "options": {
+      "provider": "aws",
+      "key": "AKIASVLKCJ4FSFK4HONH",
+      "secret": "<REDACTED>"
+    },
+    "error": {
+      "message": "The \"config credentials\" command was deprecated in v4. To configure your AWS credentials, run the \"serverless\" command instead.",
+      "code": "UNRECOGNIZED_CLI_COMMAND"
+    },
+    "params": {},
+    "machineId": "805fe4715395bed6088a49fa1e383732",
+    "stage": "dev",
+    "accessKeyV2": "<REDACTED>",
+    "accessKeyV1": "<REDACTED>",
+    "orgId": "7a1fedd6-fd91-41bf-9b9a-b56554d10ee3",
+    "orgName": "nierbian",
+    "userId": "2zc2nsDBFWCxWCRG37",
+    "dashboard": {
+      "isEnabledForService": false,
+      "requiredAuthentication": false,
+      "orgFeaturesInUse": null,
+      "orgObservabilityIntegrations": null,
+      "serviceAppId": null,
+      "serviceProvider": null,
+      "instanceParameters": null
+    },
+    "userName": "nierbian",
+    "subscription": null,
+    "userEmail": "xuenibian@gmail.com",
+    "projectType": "traditional",
+    "versionSf": "4.4.0",
+    "serviceProviderAwsCfStackName": "auth-server-dev",
+    "serviceUniqueId": null,
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  },
+  "unknown": {
+    "versionSfCore": null,
+    "versionFramework": "4.4.0",
+    "isWithinCompose": false,
+    "composeOrgName": null,
+    "composeServiceName": null,
+    "command": [],
+    "options": {},
+    "error": null,
+    "machineId": "805fe4715395bed6088a49fa1e383732",
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}
