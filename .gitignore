@@ -1,6 +1,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,macos,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,macos,python
 
+
+# production
+/build
+
+# Serverless directories
+.serverless
+
 ### Emacs ###
 # -*- mode: gitignore; -*-
 *~
