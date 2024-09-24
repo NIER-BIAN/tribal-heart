@@ -1,11 +1,42 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+# "org" ensures this Service is used with the correct Serverless Framework Access Key
+
 org: nierbian
+
 service: auth-server
 
 provider:
+
   name: aws
-  runtime: nodejs14.x
+  runtime: nodejs18.x
+  region: eu-central-1
+  timeout: 30 # optional & in secs (default=6s)
+  environment:
+    CLIENT_ID: ${file(config.json):CLIENT_ID}
+    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
+    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
 
 functions:
-  hello:
-    handler: handler.hello
+
+  getAuthURL:
+    handler: handler.getAuthURL
+    # types of events that will trigger getAuthURL
+    events:
+      - http:
+          path: api/get-auth-url
+          method: get
+
+  getAccessToken:
+    handler: handler.getAccessToken
+    events:
+      - http:
+          # when user authorises the app, the auth code is {code}
+          path: api/token/{code}
+          method: get
+
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
+    events:
+      - http:
+          # once again, prev function is referenced
+          path: api/get-events/{access_token}
+          method: get
