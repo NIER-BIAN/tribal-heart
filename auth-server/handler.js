@@ -86,7 +86,7 @@ module.exports.getAccessToken = async (event) => {
 	// constructs res obj with CORS headers and a JSON body
 	// containing the access token or err message based on outcome of the  process
 
-	// callback” after the exchange: arrow function with "results" as arg
+	// callback after the exchange: arrow function with "results" as arg
 	(results) => {
 	    return {
 		statusCode: 200,
@@ -143,7 +143,7 @@ module.exports.getCalendarEvents = async (event) => {
 	// constructs res obj with CORS headers and a JSON body
 	// containing the access token or err message based on outcome of the  process
 
-	//callback” after the exchange: arrow function with "results" as arg
+	//callback after the exchange: arrow function with "results" as arg
 	(results) => {
 	    return {
 		statusCode: 200,

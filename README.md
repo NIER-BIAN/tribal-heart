@@ -6,7 +6,7 @@ Tribal Heart is serverless, meet-up-like PWA written with React. The application
   <img src="img/arch_diagram.png" width="800">
 </p>
 
-Its features as as follows.
+Its features are as follows.
 
 ## Feature 1 of 6: Filter Events by City
 
@@ -29,6 +29,12 @@ Scenario: Select a city from the suggested list.
 - Given user has typed "Ber" in the city textbox AND the list of suggested cities is showing;
 - When the user clicks on a city (eg. "Berlin, Germany") from the list;
 - Then the user receives a list of upcoming events in that city.
+
+Scenario: No city searched for
+
+- Given the user is on the events page;
+- When the search bar is empty;
+- Then upcoming events from all cities are displayed.
 
 Scenario: City with no events
 
