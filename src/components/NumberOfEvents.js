@@ -2,20 +2,18 @@
 // IMPORTS
 
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
-
-const NumberOfEvents = () => {
+const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
 
     //========================================================================================
     // DATA MANAGEMENT (useState hooks)
     
-    // numberPerPage is default 10
-    const [numberPerPage, setNumberPerPage] = useState(10);
     const [showDropdown, setShowDropdown] = useState(false);
     const options = [10, 15, 20, 25, 30];
 
     const numberPerPageChangeHandler = (e) => {
-	setNumberPerPage(parseInt(e.target.value, 10))
+	onSelectionClick(parseInt(e.target.value, 10));
 	// 10 here means str to be parsed as base-10 int
 	setShowDropdown(!showDropdown); // stop rendering dropdown
     };
@@ -70,5 +68,10 @@ const NumberOfEvents = () => {
             </div>  
     )
 }
+
+NumberOfEvents.propTypes = {
+    numberPerPage: PropTypes.number.isRequired,
+    onSelectionClick: PropTypes.func.isRequired,
+};
 
 export default NumberOfEvents;

@@ -7,7 +7,10 @@ describe('<NumberOfEvents /> component', () => {
 
     let NumberOfEventsComponent;
     beforeEach(() => {
-	NumberOfEventsComponent = render(<NumberOfEvents />);
+	NumberOfEventsComponent = render(<NumberOfEvents
+					 numberPerPage={10}
+					 //onSelectionClick={() => {} }
+					 />);
     });
 
     test('renders no-of-events box', () => {
@@ -46,6 +49,7 @@ describe('<NumberOfEvents /> component', () => {
         expect(option30).toBeInTheDocument();
     });
 
+    /* this is now an integration test
     test('value of the NumberOfEvents component’s box is value 20 when user clicks on 20 from  drop-down menu', async() => {
 	
 	// step 0 of 3: setup
@@ -57,7 +61,7 @@ describe('<NumberOfEvents /> component', () => {
 	await userEvent.selectOptions(dropdown, "20");
 	// step 2 of 3: suggestionListItems initialised after user typing simulated
         expect(numberOfEventsBox).toHaveValue(20);
-    });
+    });*/
     
     test('drop down not rendered when user clicks outside of drop down menu', async () => {
 	

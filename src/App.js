@@ -17,11 +17,9 @@ const App = () => {
     // DATA MANAGEMENT (useState hooks)
     
     const [allEvents, setAllEvents] = useState([]);
-    // in NumberOfEvents.js for now
-    // const [numberPerPage, setNumberPerPage] = useState(10);
-
-    const numberPerPage = 10;
     
+    const [numberPerPage, setNumberPerPage] = useState(10);
+
     const fetchData = async () => {
 	const eventsData = await getEvents();
 	setAllEvents(eventsData.slice(0, numberPerPage));
@@ -32,7 +30,7 @@ const App = () => {
     
     useEffect(() => {
 	fetchData();
-    }, []);
+    }, [numberPerPage]);
     
     //=========================================================================================
     // UI RENDERING
@@ -40,7 +38,10 @@ const App = () => {
     return (
 	<div className="App">
 	    <CitySearch/>
-	    <NumberOfEvents/>
+	    <NumberOfEvents
+	       numberPerPage={numberPerPage}
+	       onSelectionClick={(newNumberPerPage) => setNumberPerPage(newNumberPerPage)}
+	    />
 	    <EventList allEvents={allEvents} />
 	</div>
     );
