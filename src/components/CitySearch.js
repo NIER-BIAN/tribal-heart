@@ -1,11 +1,20 @@
+//=============================================================================================
+// IMPORTS
+
 import { useState } from "react";
 
 const CitySearch = ({ allLocations }) => {
 
+    //========================================================================================
+    // DATA MANAGEMENT (useState hooks)
+    
     // local state that toggles suggestion list displayed (default hidden)
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [query, setQuery] = useState("");
     const [suggestionsList, setSuggestionsList] = useState([]);
+
+    //=========================================================================================
+    // EVENT HANDLING
     
     // NOTE: "event" here as in function is callback of onChange
     const queryUpdateHandler = (event) => {
@@ -29,6 +38,9 @@ const CitySearch = ({ allLocations }) => {
 	setQuery(chosenCity);      // render chosen city in input box
 	setShowSuggestions(false); // hide list after clicked
     };
+
+    //=========================================================================================
+    // UI RENDERING
     
     return (
 	    <div id="city-search">

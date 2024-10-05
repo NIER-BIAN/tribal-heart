@@ -16,8 +16,7 @@ describe('<App /> component', () => {
     })
 
     /* Note: beforeEach() is used instead of beforeAll() as React Testing Library
-       automatically unmounts the mock component after each test
-    */
+       automatically unmounts the mock component after each test */
 
     test('renders CitySearch', () => {
 	expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();

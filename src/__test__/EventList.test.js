@@ -1,7 +1,8 @@
-import { render } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
 
 import EventList from '../components/EventList';
-import Event from '../components/Event';
+import App from "../App";
+
 import { getEvents } from '../api';
 
 describe('<EventList /> component', () => {
@@ -30,17 +31,17 @@ describe('<EventList /> component', () => {
     
     test('renders correct number of events', async () => {
 
-	const allEvents = await getEvents();
+	const eventsData = await getEvents();
 	
 	// rerender method: update the props of a component already rendered.
 	// useful for testing how the component behaves with diff inputs w.o.
 	// needing to recreate the component from scratch.
 	EventListComponent.rerender(
 	    // set events prop manually using mock data
-		<EventList allEvents={allEvents}/>);
+		<EventList allEvents={eventsData}/>);
 
 	// test if EventList renders all 35 events as elements with role listitem
-	expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
+	expect(EventListComponent.getAllByRole("listitem")).toHaveLength(eventsData.length);
 	
 	/*
 	  note that instead of adding role="listitem" anywhere in Event.js
@@ -49,4 +50,21 @@ describe('<EventList /> component', () => {
 	
     });
     
+});
+
+describe('<EventList /> integration', () => {
+
+    test('renders a list of 10 events when the app is mounted and rendered', async () => {
+	
+	const AppDOM = render(<App />).container.firstChild;
+	const EventListDOM = AppDOM.querySelector('#event-list');
+
+	// waitFor() to query elements that aren’t rendered immediately
+	// wait for list of events being fetched / delayed rendering
+	await waitFor(() => {
+	    // within() allows RTL query functions on the passed DOM object
+	    const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+	    expect(EventListItems.length).toBe(10);
+	});
+    });
 });

@@ -7,7 +7,7 @@ const EventList = ({ allEvents }) => {
 	// component which will internally render the <li></li> element):
 	    <ul id="event-list">
 	    {
-		// .map() loop is only executed if allEvents prop passed
+		// .map() loop is only executed if eventList prop passed
 		allEvents
 		    ? allEvents.map(
 			event => <Event event={event} key={event.id} /> )
