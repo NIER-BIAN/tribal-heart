@@ -1,7 +1,9 @@
-import { render } from '@testing-library/react';
+import { render, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import CitySearch from '../components/CitySearch';
+import App from '../App';
+
 import { getEvents, extractLocations } from '../api';
 
 describe('<CitySearch /> component', () => {
@@ -37,6 +39,14 @@ describe('<CitySearch /> component', () => {
 
 	// step 0 of 3: setup
 	const user = userEvent.setup();
+	
+	/* Note:
+	   Pass a dummy prop here and rerender as otherwise allLocations would be undefined.
+	   Since now the useEffect hook runs on mount it will set suggestionsList to be undefined.
+	   (Before we added the useEffect hook, it would've been left alone at initial state: [])
+	*/
+	CitySearchComponent.rerender(<CitySearch allLocations={[]} />);
+	
 	const citySearchInputBox = CitySearchComponent.queryByRole('textbox');
 	
 	// step 1 of 3: interaction simulated --- user clicks input field and it "gains focus"
@@ -56,9 +66,10 @@ describe('<CitySearch /> component', () => {
     //**NOTE**: TEST CALLBACK NOW ASYNCHRONOUS
     test('list of suggestions when a city is searched for has right length & content', async () => {
 
-	// tests that involves user interactions should always have obj setup that represents user
-	// user-event is RTL's companion lib for representing user interactions in tests
-	// this should NOT be outside the test, such as in beforeEach or beforeAll
+	/* tests that involves user interactions should always have obj setup that represents user
+	   user-event is RTL's companion lib for representing user interactions in tests
+	   this should NOT be outside the test, such as in beforeEach or beforeAll */
+	
 	// step 0 of 3: setup
 	const user = userEvent.setup();
 	const allEvents = await getEvents();
@@ -104,7 +115,10 @@ describe('<CitySearch /> component', () => {
 	const allEvents = await getEvents(); 
 	const allLocations = extractLocations(allEvents);
 	// rerender / update <CitySearch> (it expects allLocations as props)
-	CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+	CitySearchComponent.rerender(<CitySearch
+				         allLocations={allLocations}
+				         setCurrentCity={() => { }}
+				     />);
 	const citySearchInputBox = CitySearchComponent.queryByRole('textbox');
 
 	// step 1 of 3: interaction simulated --- user types "Berlin" in city textbox
@@ -120,4 +134,32 @@ describe('<CitySearch /> component', () => {
 	// i.e. it needs to change from  "Berlin" to  "Berlin, Germany"
 	expect(citySearchInputBox).toHaveValue(firstMatchInSuggestionsList.textContent);
     });
+});
+
+describe('<CitySearch /> integration', () => {
+
+    test('<App /> correctly renders suggestion list when cityTextBox gains focus.', async () => {
+	
+	// step 0 of 3: setup
+	const user = userEvent.setup();
+	
+	const AppDOM = render(<App />).container.firstChild;
+	const CitySearchDOM = AppDOM.querySelector('#city-search');
+	
+	const cityTextBox = within(CitySearchDOM).queryByRole('textbox');
+	
+	const allEvents = await getEvents();
+	const allLocationsInMockData = extractLocations(allEvents);
+	
+	// step 1 of 3: interaction simulated --- user clicks on cityTextBox
+	await user.click(cityTextBox);
+	
+	// step 2 of 3: suggestionListItems initialised after user clicking simulated
+	// (as this is when the the list actually appears)
+	const suggestionList = within(CitySearchDOM).queryAllByRole('listitem');
+
+	// step 3 of 3: check if suggestions list has right length
+	expect(suggestionList.length).toBe(allLocationsInMockData.length + 1);
+    });
+    
 });

@@ -21,7 +21,7 @@ const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
     //========================================================================================
     // SIDE EFFECTS (useEffect hooks)
     
-    // hide drop-down when the user clicks outside of the current componen
+    // hide drop-down when the user clicks outside of the current component
     useEffect(
 	
 	// arg 1: code you want to run as a side effect
@@ -34,6 +34,8 @@ const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
             };
 	    
             document.addEventListener('mousedown', clickOutsideHandler);
+
+	    // cleanup function: removes event listener **when the component unmounts**
             return () => {
 		document.removeEventListener('mousedown', clickOutsideHandler);
             };
@@ -70,8 +72,8 @@ const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
 }
 
 NumberOfEvents.propTypes = {
-    numberPerPage: PropTypes.number.isRequired,
-    onSelectionClick: PropTypes.func.isRequired,
+    numberPerPage: PropTypes.number,
+    onSelectionClick: PropTypes.func,
 };
 
 export default NumberOfEvents;

@@ -1,9 +1,9 @@
 //=============================================================================================
 // IMPORTS
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
 
     //========================================================================================
     // DATA MANAGEMENT (useState hooks)
@@ -12,7 +12,52 @@ const CitySearch = ({ allLocations }) => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [query, setQuery] = useState("");
     const [suggestionsList, setSuggestionsList] = useState([]);
+    
+    //=========================================================================================
+    // SIDE EFFECTS (useEffect hooks)
 
+    // We need to do this w. a useEffect hook, as allLocations will be empty array until dada fetched
+    useEffect(
+	
+	// arg 1: code you want to run as a side effect
+	() => {
+	    setSuggestionsList(allLocations);
+	},
+
+	// arg 2: array of dependencies
+	// note conversion to string to prevent unnecessary re-renders
+	// as React's comparison mechanism for arrays/obj is reference comparison, not value comparison
+	[`${allLocations}`]);
+
+    // hide drop-down when the user clicks outside of the current component
+    useEffect(
+	
+	// arg 1: code you want to run as a side effect
+	() => {
+            const clickOutsideHandler = (event) => {
+		const noEventsDiv = document.getElementById('city-search');
+		if (!noEventsDiv.contains(event.target)) {
+		    // reset search input box: note this will not trigger the onChange callback of the input box
+		    // as this is not a user-initiated change / user-interaction but a programmatic update.
+		    document.getElementById("city-search-input-box").value = "Search for a particular city";
+		    // hide suggestions list after user clicks outside the city-search component
+                    setShowSuggestions(false);
+		}
+            };
+	    
+            document.addEventListener('mousedown', clickOutsideHandler);
+
+	    // cleanup function: removes event listener **when the component unmounts**
+            return () => {
+		document.removeEventListener('mousedown', clickOutsideHandler);
+            };
+	},
+	
+	// arg 2: array of dependencies
+	[]
+	
+    );
+    
     //=========================================================================================
     // EVENT HANDLING
     
@@ -21,9 +66,9 @@ const CitySearch = ({ allLocations }) => {
 	const curSearchTerm = event.target.value;
 	const filteredLocations = allLocations
 	      ? allLocations.filter((candidateLocation) => {
-		  // allLocations is filtered down to the suggestions array—the array
-		  // to only contain candidateLocation that contain curSearchTerm as a substring
-		  // if not found as a substring indexOf() will return -1
+		  /* allLocations is filtered down to the suggestions array—the array
+		     to only contain candidateLocation that contain curSearchTerm as a substring
+		     if not found as a substring indexOf() will return -1 */
 		  return candidateLocation.toUpperCase().indexOf(curSearchTerm.toUpperCase()) > -1;
 	      })
 	      : [];
@@ -36,15 +81,26 @@ const CitySearch = ({ allLocations }) => {
     const suggestionListItemClickedHandler = (event) => {
 	const chosenCity = event.target.textContent;
 	setQuery(chosenCity);      // render chosen city in input box
+	setCurrentCity(chosenCity);
 	setShowSuggestions(false); // hide list after clicked
+    };
+
+    const seeAllCitiesClickedHandler = (event) => {
+	// reset search input box: note this will not trigger the onChange callback of the input box
+	// as this is not a user-initiated change / user-interaction but a programmatic update.
+	document.getElementById("city-search-input-box").value = "Search for a particular city";
+	// hide list after option clicked
+	setCurrentCity("See all cities");
+	setShowSuggestions(false);
     };
 
     //=========================================================================================
     // UI RENDERING
     
     return (
-	    <div id="city-search">
+	  <div id="city-search">
 	    <input
+	      id="city-search-input-box"
 	      type="text"
 	      placeholder="Search for a particular city"
               value={query}
@@ -61,13 +117,12 @@ const CitySearch = ({ allLocations }) => {
 		          >{suggestion}
 		          </li>
                  })}
-	         // manually add item
-                 <li onClick={suggestionListItemClickedHandler} key='See all cities'>
+                 <li onClick={seeAllCitiesClickedHandler} key='See all cities'>
                    <b>See all cities</b>
                  </li>
 	       </ul>
 	     : null}
-	    </div>
+	  </div>
     )
 }
 

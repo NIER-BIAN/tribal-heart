@@ -9,7 +9,6 @@ describe('<NumberOfEvents /> component', () => {
     beforeEach(() => {
 	NumberOfEventsComponent = render(<NumberOfEvents
 					 numberPerPage={10}
-					 //onSelectionClick={() => {} }
 					 />);
     });
 

@@ -1,3 +1,4 @@
+
 import Event from './Event';
 
 const EventList = ({ allEvents }) => {
@@ -12,7 +13,6 @@ const EventList = ({ allEvents }) => {
 		    ? allEvents.map(
 			event => <Event event={event} key={event.id} /> )
 		    : null
-		    
 	    }
 	</ul>
     );

@@ -7,7 +7,7 @@ import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
 
-import { getEvents } from './api';
+import { getEvents, extractLocations } from './api';
 
 import './App.css';
 
@@ -17,32 +17,57 @@ const App = () => {
     // DATA MANAGEMENT (useState hooks)
     
     const [allEvents, setAllEvents] = useState([]);
-    
+    const [allLocations, setAllLocations] = useState([]);
     const [numberPerPage, setNumberPerPage] = useState(10);
-
+    const [currentCity, setCurrentCity] = useState("See all cities");
+    
     const fetchData = async () => {
 	const eventsData = await getEvents();
-	setAllEvents(eventsData.slice(0, numberPerPage));
+	setAllLocations(extractLocations(eventsData));
+	
+	// if currentCity === "See all cities", filteredEvents = allEvents, otherwise filter for city
+	const filteredEvents = currentCity === "See all cities"
+	      ? eventsData
+	      : eventsData.filter(event => event.location === currentCity)
+
+	// For now, replace eventsData with filteredEvents
+	// setAllEvents(eventsData.slice(0, numberPerPage));
+	setAllEvents(filteredEvents.slice(0, numberPerPage))
     }
 
     //=========================================================================================
     // SIDE EFFECTS (useEffect hooks)
     
-    useEffect(() => {
-	fetchData();
-    }, [numberPerPage]);
+    useEffect(
+
+	// arg 1: code you want to run as a side effect
+	() => {
+	    fetchData();
+	},
+	
+	// arg 2: array of dependencies
+	[currentCity]);
     
     //=========================================================================================
     // UI RENDERING
     
     return (
-	<div className="App">
-	    <CitySearch/>
-	    <NumberOfEvents
-	       numberPerPage={numberPerPage}
-	       onSelectionClick={(newNumberPerPage) => setNumberPerPage(newNumberPerPage)}
+	    <div className="App">
+	    
+	    <CitySearch
+	        allLocations={allLocations}
+	        setCurrentCity={setCurrentCity}
 	    />
-	    <EventList allEvents={allEvents} />
+	    
+	    <NumberOfEvents
+	        numberPerPage={numberPerPage}
+	        onSelectionClick={(newNumberPerPage) => setNumberPerPage(newNumberPerPage)}
+	    />
+	    
+	    <EventList
+	        allEvents={allEvents}
+	    />
+	    
 	</div>
     );
 }
