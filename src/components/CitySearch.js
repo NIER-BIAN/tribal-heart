@@ -16,7 +16,7 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     //=========================================================================================
     // SIDE EFFECTS (useEffect hooks)
 
-    // We need to do this w. a useEffect hook, as allLocations will be empty array until dada fetched
+    // We need to do this w. a useEffect hook, as allLocations will be empty array until data fetched
     useEffect(
 	
 	// arg 1: code you want to run as a side effect
@@ -37,9 +37,6 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
             const clickOutsideHandler = (event) => {
 		const noEventsDiv = document.getElementById('city-search');
 		if (!noEventsDiv.contains(event.target)) {
-		    // reset search input box: note this will not trigger the onChange callback of the input box
-		    // as this is not a user-initiated change / user-interaction but a programmatic update.
-		    document.getElementById("city-search-input-box").value = "Search for a particular city";
 		    // hide suggestions list after user clicks outside the city-search component
                     setShowSuggestions(false);
 		}
@@ -80,18 +77,18 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     // NOTE: "event" here as in function is callback of onClick
     const suggestionListItemClickedHandler = (event) => {
 	const chosenCity = event.target.textContent;
-	setQuery(chosenCity);      // render chosen city in input box
 	setCurrentCity(chosenCity);
+	setQuery(chosenCity);      // render chosen city in input box
 	setShowSuggestions(false); // hide list after clicked
     };
 
     const seeAllCitiesClickedHandler = (event) => {
-	// reset search input box: note this will not trigger the onChange callback of the input box
-	// as this is not a user-initiated change / user-interaction but a programmatic update.
-	document.getElementById("city-search-input-box").value = "Search for a particular city";
-	// hide list after option clicked
+	// set city, hide list, and reset query after option clicked
 	setCurrentCity("See all cities");
 	setShowSuggestions(false);
+	// reset query and suggestionsList
+	setQuery("");
+	setSuggestionsList(allLocations);
     };
 
     //=========================================================================================

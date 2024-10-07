@@ -54,15 +54,18 @@ const App = () => {
     return (
 	    <div className="App">
 	    
-	    <CitySearch
-	        allLocations={allLocations}
-	        setCurrentCity={setCurrentCity}
-	    />
-	    
-	    <NumberOfEvents
+	      <CitySearch
+	         allLocations={allLocations}
+	         setCurrentCity={setCurrentCity}
+	      />
+
+	    <div className="pagination">
+	      <p>Items per page:</p>
+	      <NumberOfEvents
 	        numberPerPage={numberPerPage}
 	        onSelectionClick={(newNumberPerPage) => setNumberPerPage(newNumberPerPage)}
-	    />
+	      />
+	    </div>
 	    
 	    <EventList
 	        allEvents={allEvents}

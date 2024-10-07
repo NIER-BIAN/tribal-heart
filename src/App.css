@@ -1,38 +1,152 @@
+/* =======================================
+   =======================================
+
+   TABLE OF CONTENTS
+
+     1. Global styles
+
+     2. Typography
+
+     3. Layout
+
+     4. Components
+
+     5. Media queries
+
+   =======================================
+   ======================================= */
+
+/* ================
+   1. Global styles
+   ================ */
+
+:root {
+    --primary-color: #041f31;
+    --secondary-color: #f69876;
+    --dark-orange: #b8676f;
+    --text-color: #ffffff;
+}
+
 .App {
-  text-align: center;
+    text-align: center;
+    padding: 5% 5%;
+    background-color: var(--primary-color);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App * {
+    box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ================
+     2. Typography
+   ================ */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+ul {
+    list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h1, h2, h4 {
+    color: var(--secondary-color);
 }
 
-.App-link {
-  color: #61dafb;
+p {
+    color: var(--text-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+    color: var(--dark-orange:);
+}
+
+a:visited {
+    color: var(--dark-orange);
+}
+
+a:hover, a:focus {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* ================
+       3. Layout
+   ================ */
+
+
+/* ================
+    4. Components
+   ================ */
+
+#city-search {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    position: relative;
+}
+
+#city-search-input-box {
+    width: 100%;
+    padding: 16px 12px 16px 20px;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    line-height: 20px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.suggestions {
+    width: 100%;
+    position: absolute;
+    top: 42px;
+    left: -38px;
+    z-index: 2;
+    margin: 0;
+    font-size: 14px;
+}
+
+.suggestions > li {
+    text-align: left;
+    padding: 8px 6px 8px 10px;
+    background-color: white;
+    cursor: default;
+}
+
+.suggestions > li:hover {
+    background-color: var(--secondary-color);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination p {
+    margin-right: 10px;
+}
+
+.event {
+    padding: 10px 40px 30px;
+    margin-left: -45px;
+    margin-bottom: 10px;
+    text-align: left;
+    border: 2px solid var(--secondary-color);
+    border-radius: 40px;
+}
+
+.details-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    outline: none;
+    border: 2px solid var(--secondary-color);
+    padding: 10px;
+    border-radius: 20px;
+    border-bottom: 3px solid var(--dark-orange);
+    transition: opacity 0.2s;
+}
+
+.details-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
