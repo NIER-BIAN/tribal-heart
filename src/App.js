@@ -11,9 +11,8 @@ import { getEvents, extractLocations } from './api';
 
 import './App.css';
 
-import { cardio } from 'ldrs'
-
-cardio.register()
+import { cardio } from 'ldrs';
+cardio.register();
 
 const App = () => {
 
@@ -98,7 +97,7 @@ const App = () => {
 	        />
 	      )}
 	
-	</div>
+	    </div>
     );
 }
 
