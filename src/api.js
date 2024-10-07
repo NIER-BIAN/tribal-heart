@@ -151,12 +151,10 @@ const getEvents = async () => {
     }
 
     const token = await checkTokenPresence();
-
-    console.log(`this is getEvents and token is ${token}`);
     
     if (token) {
 	
-	// removeQueryParamsFromUrl();
+	removeQueryParamsFromUrl();
 
 	/*
 	**NOTE**: 3rd of 3 serverless function called
