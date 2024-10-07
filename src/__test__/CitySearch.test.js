@@ -40,10 +40,11 @@ describe('<CitySearch /> component', () => {
 	// step 0 of 3: setup
 	const user = userEvent.setup();
 	
-	/* Note:
-	   Pass a dummy prop here and rerender as otherwise allLocations would be undefined.
-	   Since now the useEffect hook runs on mount it will set suggestionsList to be undefined.
-	   (Before we added the useEffect hook, it would've been left alone at initial state: [])
+	/*
+	  Note:
+	  Pass a dummy prop here and rerender as otherwise allLocations would be undefined.
+	  Since now the useEffect hook runs on mount it will set suggestionsList to be undefined.
+	  (Before we added the useEffect hook, it would've been left alone at initial state: [])
 	*/
 	CitySearchComponent.rerender(<CitySearch allLocations={[]} />);
 	
@@ -133,6 +134,23 @@ describe('<CitySearch /> component', () => {
 	// step 3 of 3: check if firstMatchInSuggestionsList rendered in citySearchInputBox
 	// i.e. it needs to change from  "Berlin" to  "Berlin, Germany"
 	expect(citySearchInputBox).toHaveValue(firstMatchInSuggestionsList.textContent);
+    });
+
+    //-----------------------------------------------------------------------------------------------
+
+    test('drop down not rendered when user clicks outside of component', async () => {
+	
+	// step 0 of 3: setup
+	const user = userEvent.setup();
+	CitySearchComponent.rerender(<CitySearch allLocations={[]} />);
+	const citySearchInputBox = CitySearchComponent.queryByRole('textbox');
+	
+	// step 1 of 3: interaction simulated --- user clicks input field and it "gains focus"
+	await user.click(citySearchInputBox);
+        await userEvent.click(document.body); // Simulate a click outside the dropdown
+	
+	// step 2 of 3: suggestionListItems initialised after user typing simulated
+	expect(CitySearchComponent.queryByRole('list')).not.toBeInTheDocument();
     });
 });
 

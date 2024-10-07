@@ -46,7 +46,7 @@ const App = () => {
 	},
 	
 	// arg 2: array of dependencies
-	[currentCity]);
+	[currentCity, numberPerPage]);
     
     //=========================================================================================
     // UI RENDERING

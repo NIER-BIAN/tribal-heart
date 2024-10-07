@@ -9,65 +9,31 @@ const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
     //========================================================================================
     // DATA MANAGEMENT (useState hooks)
     
-    const [showDropdown, setShowDropdown] = useState(false);
+    // const [showDropdown, setShowDropdown] = useState(false);
     const options = [10, 15, 20, 25, 30];
 
     const numberPerPageChangeHandler = (e) => {
 	onSelectionClick(parseInt(e.target.value, 10));
 	// 10 here means str to be parsed as base-10 int
-	setShowDropdown(!showDropdown); // stop rendering dropdown
     };
-    
-    //========================================================================================
-    // SIDE EFFECTS (useEffect hooks)
-    
-    // hide drop-down when the user clicks outside of the current component
-    useEffect(
-	
-	// arg 1: code you want to run as a side effect
-	() => {
-            const clickOutsideHandler = (event) => {
-		const noEventsDiv = document.getElementById('no-of-events');
-		if (!noEventsDiv.contains(event.target)) {
-                    setShowDropdown(false);
-		}
-            };
-	    
-            document.addEventListener('mousedown', clickOutsideHandler);
-
-	    // cleanup function: removes event listener **when the component unmounts**
-            return () => {
-		document.removeEventListener('mousedown', clickOutsideHandler);
-            };
-	},
-	
-	// arg 2: array of dependencies
-	[]
-	
-    );
     
     //=======================================================================================
     // UI RENDERING
     
     return (
             <div id="no-of-events">
-	      <input
-                type="number"
-                value={numberPerPage}
-                onChange={numberPerPageChangeHandler}
-                onClick={() => setShowDropdown(!showDropdown)}
-                role="textbox"
-	      />
-	      {showDropdown
-	       ? <select
-	           onChange={(e) => numberPerPageChangeHandler(e)}>
-		   {options.map((option) => (
-			 <option key={option} value={option}>{option}</option>
-		   ))}
-	         </select>
-	       : null
-	      }
-            </div>  
+	      <select
+                 value={numberPerPage}
+                 onChange={numberPerPageChangeHandler}
+                 role="combobox"
+              >
+	        {options.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+	      </select>
+	    </div>
     )
 }
 

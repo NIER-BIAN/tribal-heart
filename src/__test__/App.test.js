@@ -72,5 +72,27 @@ describe('<App /> integration', () => {
 	});
 
     });
+
+    test('When user selects 20 in <NumberOfEvents/>, <App/> correctly renders <EventList/> of length 20>', async () => {
+	// step 0 of 3: setup
+	const user = userEvent.setup();
+	
+	const AppDOM = render(<App />).container.firstChild;
+	const NumberOfEventsDOM = AppDOM.querySelector('#no-of-events');
+	const numberOfEventsBox = within(NumberOfEventsDOM).queryByRole('combobox');
+	
+	// step 1 of 3: interaction simulated --- user clicks numberOfEventsBox and chooses 20
+	await userEvent.selectOptions(numberOfEventsBox, "20");
+
+	// step 2 of 3: EventList initialised after user selecting Berlin simulated
+	// (as this is when the the  event list of right length actually appears)
+	const EventListDOM = AppDOM.querySelector('#event-list');
+	const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+
+	// step 3 of 3: checks length
+	expect(EventListItems.length).toBe(20);
+
+	    
+    });
     
 });
