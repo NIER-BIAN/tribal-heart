@@ -114,6 +114,10 @@ const checkTokenPresence = async () => {
 // by manually setting the browser's URL to 'https://nier-bian.github.io/tribal-heart'
 const removeQueryParamsFromUrl = () => {
 
+    // log the unmodified URL so that we can still use static-site-test/test-auth-server.html
+    const currentURL = window.location.href;
+    console.log(`This is removeQueryParamsFromUrl and currentURL is ${currentURL}`);
+    
     const simplifiedUrl =
 	  // https://
 	  window.location.protocol + "//" +
