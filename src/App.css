@@ -27,7 +27,7 @@
     --text-color: #ffffff;
 }
 
-body {
+html, body {
     height: 100%;
 }
 

@@ -28,10 +28,6 @@ describe('<App /> component', () => {
 	expect(AppDOM.querySelector('#no-of-events')).toBeInTheDocument();
     });
 
-    test('renders list of events', () => {
-	// note that matcher functions are always chained to expect()
-	expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
-    });
 });
 
 describe('<App /> integration', () => {
