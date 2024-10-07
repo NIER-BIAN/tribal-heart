@@ -50,13 +50,14 @@ const renewToken = async (code) => {
     */
     const getAccessTokenPartialURL = 'https://tg3pna3a02.execute-api.eu-central-1.amazonaws.com/dev/api/token';
     const response = await fetch(getAccessTokenPartialURL + '/' + encodedAuthCode);
-    const { newToken } = await response.json();
+    // *NOTE this HAS to be called access_token*
+    const { access_token } = await response.json();
 
     // recall: && is useful for making sure that a certain condition has been satisfied
     // i.e. access_token truthy prior to saving to localStorage
-    newToken && localStorage.setItem("access_token", newToken);
-
-    return newToken;
+    access_token && localStorage.setItem("access_token", access_token);
+    
+    return access_token;
 };
 
 // called by getEvents when not using localhost i.e. using the real API
@@ -151,9 +152,11 @@ const getEvents = async () => {
 
     const token = await checkTokenPresence();
 
+    console.log(`this is getEvents and token is ${token}`);
+    
     if (token) {
 	
-	removeQueryParamsFromUrl();
+	// removeQueryParamsFromUrl();
 
 	/*
 	**NOTE**: 3rd of 3 serverless function called
@@ -161,7 +164,7 @@ const getEvents = async () => {
 	first part of getCalendarEventsURL identical to getCalendarEventsPartialURL
 	in static-site-test/test-auth-server.html
 	*/
-	const getCalendarEventsURL =  'https://tg3pna3a02.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
+	const getCalendarEventsURL = 'https://tg3pna3a02.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
 	const response = await fetch(getCalendarEventsURL);
 	const result = await response.json();
 	if (result) {
@@ -184,4 +187,3 @@ const extractLocations = (events) => {
 // Exports
 
 export { getEvents, extractLocations };
-
