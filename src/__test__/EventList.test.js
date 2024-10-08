@@ -57,11 +57,11 @@ describe('<EventList /> integration', () => {
     test('renders a list of 10 events when the app is mounted and rendered', async () => {
 	
 	const AppDOM = render(<App />).container.firstChild;
-	const EventListDOM = AppDOM.querySelector('#event-list');
 
 	// waitFor() to query elements that aren’t rendered immediately
 	// wait for list of events being fetched / delayed rendering
 	await waitFor(() => {
+	    const EventListDOM = AppDOM.querySelector('#event-list');
 	    // within() allows RTL query functions on the passed DOM object
 	    const EventListItems = within(EventListDOM).queryAllByRole('listitem');
 	    expect(EventListItems.length).toBe(10);
