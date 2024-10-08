@@ -91,16 +91,12 @@ const App = () => {
 	          ></l-cardio>*/
 	        </div>
 	      )}
-
-	      <EventList
-	        allEvents={allEvents}
-	      />
 	    
-	      /*{!isLoading && (
+	      {!isLoading && (
 	        <EventList
 	          allEvents={allEvents}
 	        />
-	      )}*/
+	      )}
 	
 	    </div>
     );
