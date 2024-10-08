@@ -92,11 +92,15 @@ const App = () => {
 	        </div>
 	      )}
 	    
-	      {!isLoading && (
-	        <EventList
-	          allEvents={allEvents}
-	        />
-	      )}
+	      /*{!isLoading && (
+	          <EventList
+	            allEvents={allEvents}
+	          />
+	        )}*/
+
+	      <EventList
+	        allEvents={allEvents}
+	      />
 	
 	    </div>
     );

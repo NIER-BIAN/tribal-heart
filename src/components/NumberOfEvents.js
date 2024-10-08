@@ -1,9 +1,6 @@
 //========================================================================================
 // IMPORTS
 
-import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-
 const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
 
     //========================================================================================
@@ -36,10 +33,5 @@ const NumberOfEvents = ({ numberPerPage, onSelectionClick }) => {
 	    </div>
     )
 }
-
-NumberOfEvents.propTypes = {
-    numberPerPage: PropTypes.number,
-    onSelectionClick: PropTypes.func,
-};
 
 export default NumberOfEvents;
