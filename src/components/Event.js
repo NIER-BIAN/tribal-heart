@@ -14,7 +14,7 @@ const Event = ({ event }) => {
 		<p role="event-location">Location: {event.location}</p>
 
 		{showDetails && (
-		    <div role="event-details">
+		    <div role="event-details" className="event-details">
 			<h4>About event:</h4>
 			<p>{event.description}</p>
 			<a href="{event.htmlLink}" target="_blank">
