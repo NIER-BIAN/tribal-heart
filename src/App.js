@@ -12,10 +12,6 @@ import { getEvents, extractLocations } from './api';
 
 import './App.css';
 
-// 3 of test-suites will fail to run if ldrs library is imported
-// import { cardio } from 'ldrs';
-// cardio.register();
-
 const App = () => {
 
     //========================================================================================
@@ -131,12 +127,7 @@ const App = () => {
 	      {isLoading && (
 	        <div className="loading-message" role="loading-message">
 	          <h2>Loading... Please wait!</h2>
-	          /*<l-cardio
-	            size="120"
-	            stroke="4"
-	            speed="0.9" 
-	            color="white" 
-	          ></l-cardio>*/
+		  <div class="lds-dual-ring"></div>
 	        </div>
 	      )}
 	    
