@@ -100,14 +100,14 @@ const App = () => {
     // UI RENDERING
     
     return (
-	    
-	    <div className="App">
+	  <div className="App">
+	    <div className="wrapper">
               <div className="tribal-heart-header">
 	        <br/>
 	        <h1>Tribal Heart</h1>
 	        <p><em>The world is big. 0.001% of 8.2 billion people is a lot of people. Find your weirdos!</em></p><br/><br/>
 	      </div>
-	    
+	      
 	      <CitySearch
 	         allLocations={allLocations}
 	         setCurrentCity={setCurrentCity}
@@ -144,6 +144,7 @@ const App = () => {
 	      )}
 	
 	    </div>
+          </div>
     );
 }
 

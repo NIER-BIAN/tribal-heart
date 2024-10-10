@@ -38,6 +38,11 @@
     box-sizing: border-box;
 }
 
+.wrapper {
+    max-width: 75vw;
+    margin: auto;
+}
+
 /* ================
      2. Typography
    ================ */
@@ -78,14 +83,9 @@ a:hover, a:focus {
     4. Components
    ================ */
 
-.tribal-heart-header{
-    max-width: 800px;
-}
-
 #city-search {
     display: flex;
     width: 100%;
-    max-width: 800px;
     flex-direction: column;
     position: relative;
 }
@@ -125,7 +125,6 @@ a:hover, a:focus {
 .pagination {
     display: flex;
     align-items: center;
-    max-width: 800px;
 }
 
 .pagination p {
@@ -160,12 +159,7 @@ a:hover, a:focus {
     cursor: not-allowed;
 }
 
-.loading-message {
-    max-width: 800px;
-}
-
 .event {
-    max-width: 800px;
     padding: 10px 40px 30px;
     margin-left: -45px;
     margin-bottom: 10px;
