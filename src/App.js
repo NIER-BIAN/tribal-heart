@@ -121,6 +121,7 @@ const App = () => {
 	          numberPerPage={numberPerPage}
 	          goToPrevPage={goToPrevPage}
 	          goToNextPage={goToNextPage}
+	          isLoading={isLoading}
 	        />
 	      </div>
 
