@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
-import PageNav from './components/Pagination';
+import PageNav from './components/PageNav';
 
 import { getEvents, extractLocations } from './api';
 
