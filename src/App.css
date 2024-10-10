@@ -78,6 +78,10 @@ a:hover, a:focus {
     4. Components
    ================ */
 
+.tribal-heart-header{
+    max-width: 800px;
+}
+
 #city-search {
     display: flex;
     width: 100%;
@@ -154,6 +158,10 @@ a:hover, a:focus {
 
 .page-navigation button:disabled {
     cursor: not-allowed;
+}
+
+.loading-message {
+    max-width: 800px;
 }
 
 .event {

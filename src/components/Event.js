@@ -7,11 +7,13 @@ const Event = ({ event }) => {
         setShowDetails(!showDetails);
     };
     
+    const readableStartTime = new Date(event.created).toLocaleString();
+    
     return (
 	    <li className="event">
 		<h2 role="event-title">{event.summary}</h2>
-		<p role="event-start-time">Start Time: {event.created}</p>
-		<p role="event-location">Location: {event.location}</p>
+		<p role="event-start-time">📅 {readableStartTime}</p>
+		<p role="event-location">📍 {event.location}</p>
 
 		{showDetails && (
 		    <div role="event-details" className="event-details">
