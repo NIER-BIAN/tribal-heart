@@ -17,9 +17,9 @@ const Event = ({ event }) => {
 
 		{showDetails && (
 		    <div role="event-details" className="event-details">
-			<h4>About event:</h4>
+			<h4>About the event:</h4>
 			<p>{event.description}</p>
-			<a href="{event.htmlLink}" target="_blank">
+			<a href={event.htmlLink} target="_blank">
 			    See details on Google Calendar
 		        </a>
 		    </div>
