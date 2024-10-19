@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlertText }) => {
 
     //========================================================================================
     // DATA MANAGEMENT (useState hooks)
@@ -72,6 +72,15 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
 	
 	setQuery(curSearchTerm);
 	setSuggestionsList(filteredLocations);
+
+	let infoAlert;
+	if (filteredLocations.length === 0) {
+	    infoAlert = "We can't find the city you are looking for. Please try another city"
+	} else {
+	    infoAlert = ""
+	}
+	setInfoAlertText(infoAlert);
+	
     };
     
     // NOTE: "event" here as in function is callback of onClick
@@ -83,12 +92,11 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
     };
 
     const seeAllCitiesClickedHandler = (event) => {
-	// set city, hide list, and reset query after option clicked
 	setCurrentCity("See all cities");
-	setShowSuggestions(false);
-	// reset query and suggestionsList
 	setQuery("");
+	setShowSuggestions(false);
 	setSuggestionsList(allLocations);
+	setInfoAlertText("");
     };
 
     //=========================================================================================

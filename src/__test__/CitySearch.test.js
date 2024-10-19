@@ -76,7 +76,15 @@ describe('<CitySearch /> component', () => {
 	const allEvents = await getEvents();
 	const allLocations = extractLocations(allEvents);
 	// rerender / update <CitySearch> (it expects allLocations as props)
-	CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+	/*
+	  Note:
+	  Pass dummy prop setInfoAlertText here and rerender,
+	  as it is called whenever  user types something in the city text box!
+	*/
+	CitySearchComponent.rerender(<CitySearch
+				         allLocations={allLocations} 
+                                         setInfoAlertText={() => {} }
+				     />);
 
 	// step 1 of 3: interaction simulated --- user types "Berlin" in city textbox
 	const citySearchInputBox = CitySearchComponent.queryByRole('textbox');
@@ -115,10 +123,11 @@ describe('<CitySearch /> component', () => {
 	const user = userEvent.setup();
 	const allEvents = await getEvents(); 
 	const allLocations = extractLocations(allEvents);
-	// rerender / update <CitySearch> (it expects allLocations as props)
+	// rerender / update <CitySearch> with all necc. dummy props
 	CitySearchComponent.rerender(<CitySearch
 				         allLocations={allLocations}
-				         setCurrentCity={() => { }}
+				         setCurrentCity={() => {} }
+                                         setInfoAlertText={() => {} }
 				     />);
 	const citySearchInputBox = CitySearchComponent.queryByRole('textbox');
 

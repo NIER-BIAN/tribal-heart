@@ -3,10 +3,11 @@
 
 import { useEffect, useState } from 'react';
 
-import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
+import { InfoAlert, ErrorAlert } from './components/Alert';
 import NumberOfEvents from './components/NumberOfEvents';
 import PageNav from './components/PageNav';
+import EventList from './components/EventList';
 
 import { getEvents, extractLocations } from './api';
 
@@ -29,6 +30,9 @@ const App = () => {
     const [curPageNumber, setCurPageNumber] = useState(1);
     const [totalNumberOfPages, setTotalNumberOfPages] = useState(1);
     const [totalNumberOfEvents, setTotalNumberOfEvents] = useState(0);
+
+    const [infoAlertText, setInfoAlertText] = useState("");
+    const [errorAlertText, setErrorAlertText] = useState("");
     
     const fetchData = async () => {
 
@@ -102,15 +106,28 @@ const App = () => {
     return (
 	  <div className="App">
 	    <div className="wrapper">
+	    
               <div className="tribal-heart-header">
 	        <br/>
 	        <h1>Tribal Heart</h1>
 	        <p><em>The world is big. 0.001% of 8.2 billion people is a lot of people. Find your weirdos!</em></p><br/><br/>
 	      </div>
-	      
+	
+              <div className="alerts-container">
+                {infoAlertText.length ? <InfoAlert text={infoAlertText}/> : null }
+                {errorAlertText.length ? <ErrorAlert text={errorAlertText}/> : null }
+	      </div>
+
+	      <button
+	        onClick={() => {
+	          errorAlertText.length ? setErrorAlertText("") : setErrorAlertText("Guess there's an error");
+	        }}
+	      >Toggle error alert</button><br/><br/>
+	     
 	      <CitySearch
 	         allLocations={allLocations}
 	         setCurrentCity={setCurrentCity}
+	         setInfoAlertText={setInfoAlertText}
 	      />
 
 	      <div className="pagination">

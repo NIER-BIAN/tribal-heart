@@ -83,6 +83,14 @@ a:hover, a:focus {
     4. Components
    ================ */
 
+.alerts-container {
+    position: fixed;
+    top: 0px;
+    left: 20px;
+    width: 250px;
+    z-index: 1000;
+}
+
 #city-search {
     display: flex;
     width: 100%;
