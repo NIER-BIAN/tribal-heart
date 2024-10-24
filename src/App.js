@@ -32,7 +32,6 @@ const App = () => {
     const [totalNumberOfEvents, setTotalNumberOfEvents] = useState(0);
 
     const [infoAlertText, setInfoAlertText] = useState("");
-    const [errorAlertText, setErrorAlertText] = useState("");
     
     const fetchData = async () => {
 
@@ -115,15 +114,8 @@ const App = () => {
 	
               <div className="alerts-container">
                 {infoAlertText.length ? <InfoAlert text={infoAlertText}/> : null }
-                {errorAlertText.length ? <ErrorAlert text={errorAlertText}/> : null }
 	      </div>
 
-	      <button
-	        onClick={() => {
-	          errorAlertText.length ? setErrorAlertText("") : setErrorAlertText("Guess there's an error");
-	        }}
-	      >Toggle error alert</button><br/><br/>
-	     
 	      <CitySearch
 	         allLocations={allLocations}
 	         setCurrentCity={setCurrentCity}
