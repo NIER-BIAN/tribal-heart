@@ -45,22 +45,13 @@ class InfoAlert extends Alert {
     // no need to repeat code for getStyle and render
 }
 
-/*
 // WarningAlert subclass
 class WarningAlert extends Alert {
     constructor(props) {
 	super(props);
-    }
-}
-*/
-
-// ErrorAlert subclass
-class ErrorAlert extends Alert {
-    constructor(props) {
-	super(props);
-	this.color = 'rgb(255, 0, 0)';       // red
-	this.bgColor = 'rgb(225, 220, 220)'; // pale pink
+        this.color = 'rgb(255, 165, 0)'; // orange
+        this.bgColor = 'rgb(255, 255, 224)'; // light yellow
     }
 }
 
-export { InfoAlert, ErrorAlert };
+export { InfoAlert, WarningAlert };

@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 
 import CitySearch from './components/CitySearch';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, WarningAlert } from './components/Alert';
 import NumberOfEvents from './components/NumberOfEvents';
 import PageNav from './components/PageNav';
 import EventList from './components/EventList';
@@ -32,7 +32,13 @@ const App = () => {
     const [totalNumberOfEvents, setTotalNumberOfEvents] = useState(0);
 
     const [infoAlertText, setInfoAlertText] = useState("");
+    const [warningAlertText, setWarningAlertText] = useState("");
+
     
+    //=========================================================================================
+    // SIDE EFFECTS (useEffect hooks)
+
+    // called by first useEffect hook
     const fetchData = async () => {
 
 	// start loader
@@ -72,13 +78,18 @@ const App = () => {
         }
     };
     
-    //=========================================================================================
-    // SIDE EFFECTS (useEffect hooks)
-    
     useEffect(
 
 	// arg 1: code you want to run as a side effect
 	() => {
+	    
+	    // display warning alert if offline
+	    if (navigator.onLine) {
+		setWarningAlertText("");
+	    } else {
+		setWarningAlertText("It looks like you're offline. Displaying cached events from previous load when there was internet connection --- events might not be up-to-date!");
+	    }
+	    
 	    fetchData();
 	},
 	
@@ -114,6 +125,7 @@ const App = () => {
 	
               <div className="alerts-container">
                 {infoAlertText.length ? <InfoAlert text={infoAlertText}/> : null }
+                {warningAlertText.length ? <WarningAlert text={warningAlertText}/> : null }
 	      </div>
 
 	      <CitySearch
