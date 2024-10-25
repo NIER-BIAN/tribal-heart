@@ -87,7 +87,7 @@ const App = () => {
 	    if (navigator.onLine) {
 		setWarningAlertText("");
 	    } else {
-		setWarningAlertText("It looks like you're offline. Displaying cached events from previous load when there was internet connection --- events might not be up-to-date!");
+		setWarningAlertText("It looks like you're offline. Displaying cached events that might not be up-to-date!");
 	    }
 	    
 	    fetchData();
