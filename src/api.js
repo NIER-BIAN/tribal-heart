@@ -2,6 +2,7 @@
 // Imports:
 
 import mockData from './mock-data';
+import NProgress from 'nprogress';
 
 //============================================================================================
 // API integration related:
@@ -149,9 +150,25 @@ const removeQueryParamsFromUrl = () => {
 // fetch list of all events
 const getEvents = async () => {
 
+    // progress bar
+    NProgress.start();
+    
     // if using localhost, return mock data; otherwise, use the real API. 
     if (window.location.href.startsWith("http://localhost")) {
+	NProgress.done();
 	return mockData;
+    }
+
+    // if user offline, load event data from the last time it was successfully fetched
+    // navigator.onLine API checks whether a user is online and returns a boolean
+    // **note that there's no need to check for an access token if the user is offline**
+    if (!navigator.onLine) {
+	// load stringified list stored under the key 'lastEvents' from localStorage
+	const lastLoadedEvents = localStorage.getItem("lastEvents");
+	NProgress.done();
+	return lastLoadedEvents
+	    ? JSON.parse(lastLoadedEvents) // parse stringified list
+	    : []
     }
 
     const token = await checkTokenPresence();
@@ -162,15 +179,24 @@ const getEvents = async () => {
 
 	/*
 	**NOTE**: 3rd of 3 serverless function called
-	that is, getCalendarEve ts set up in auth-server/handler.js
+	that is, getCalendarEvents set up in auth-server/handler.js
 	first part of getCalendarEventsURL identical to getCalendarEventsPartialURL
 	in static-site-test/test-auth-server.html
 	*/
 	const getCalendarEventsURL = 'https://tg3pna3a02.execute-api.eu-central-1.amazonaws.com/dev/api/get-events' + '/' + token;
 	const response = await fetch(getCalendarEventsURL);
 	const result = await response.json();
+	
 	if (result) {
+
+	    // save result.events to localStorage so that feature works offline
+	    // note JSON.stringify() is called first as localStorage can only store strs
+	    // The stringified list is stored under the key lastEvents.
+	    NProgress.done();
+	    localStorage.setItem("lastEvents", JSON.stringify(result.events));
+	    
 	    return result.events;
+	    
 	} else return null; 
     }
 };
