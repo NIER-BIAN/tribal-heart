@@ -3,6 +3,8 @@
 
 import { useEffect, useState } from 'react';
 
+import CityEventsChart from './components/CityEventsChart';
+
 import CitySearch from './components/CitySearch';
 import { InfoAlert, WarningAlert } from './components/Alert';
 import NumberOfEvents from './components/NumberOfEvents';
@@ -159,9 +161,19 @@ const App = () => {
 	      )}
 	    
 	      {!isLoading && (
-	        <EventList
-	          allEvents={allEvents}
-	        />
+	              <div>
+		      
+		      <br/><hr/><hr/>
+		      <h3>Will be removed in final project:</h3>
+		      <CityEventsChart
+		        allLocations={allLocations}
+		        allEvents={allEvents}
+	              />
+	              <hr/><hr/><br/>
+
+	              <EventList
+	                allEvents={allEvents}
+	              /></div>
 	      )}
 	
 	    </div>
