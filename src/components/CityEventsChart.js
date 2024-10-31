@@ -1,9 +1,11 @@
-// remember to npm uninstall recharts
 // comment this entire file out and add it to gitignore
+// ditto: EventGenresChart.js
 
-// to delete:
+// npm uninstall recharts
 // import and render lines in app.js
 // ResizeObserver in setupTests.js
+// EventGenresChart.js
+// display in src/App.css
 
 import { useState, useEffect } from 'react';
 
@@ -18,7 +20,7 @@ import { ScatterChart,
 
 //===================================================================================
 
-const CityEventsChart = ({ allLocations, allEvents}) => {
+const CityEventsChart = ({ allLocations, graphedEvents }) => {
     
     const [data, setData] = useState([]);
 
@@ -30,7 +32,7 @@ const CityEventsChart = ({ allLocations, allEvents}) => {
 	},
 
 	// arg 2: dep. array
-	[`${allEvents}`]
+	[`${graphedEvents}`]
 
     );
     
@@ -39,14 +41,16 @@ const CityEventsChart = ({ allLocations, allEvents}) => {
 	    // for every location, extract the cicty e.g. 'Berlin'
 	    const city = location.split((/, | - /))[0] // split by ", " or " - "
 	    // count events in that city
-	    const count = allEvents.filter((event) => event.location === location).length
+	    const count = graphedEvents.filter(
+		(event) => event.location === location
+	    ).length
 	    // note shorthand for {city: city, count: count})
 	    return { city, count };
-	})
+	});
 	return data;
     };
     
-    //===================================================================================
+    //===============================================================================
 
     return (
 	    <ResponsiveContainer width="99%" height={400}>
@@ -65,9 +69,9 @@ const CityEventsChart = ({ allLocations, allEvents}) => {
 	          type="category" dataKey="city" name="City"
                   angle={60} interval={0} tick={{ dx: 20, dy: 40, fontSize: 14 }}
 	        />
-                <YAxis type="number" dataKey="count" name="Number of events" />
+                <YAxis type="number" dataKey="count" name="Number of events" allowDecimals={false} />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Scatter name="A school" data={data} fill="#8884d8" />
+                <Scatter data={data} fill="white" />
 	    
 	      </ScatterChart>
 	    

@@ -167,6 +167,17 @@ a:hover, a:focus {
     cursor: not-allowed;
 }
 
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .event {
     padding: 10px 40px 30px;
     margin-left: -45px;

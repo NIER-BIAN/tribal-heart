@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 
 import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 
 import CitySearch from './components/CitySearch';
 import { InfoAlert, WarningAlert } from './components/Alert';
@@ -161,19 +162,25 @@ const App = () => {
 	      )}
 	    
 	      {!isLoading && (
-	              <div>
+	        <div>
 		      
-		      <br/><hr/><hr/>
-		      <h3>Will be removed in final project:</h3>
-		      <CityEventsChart
-		        allLocations={allLocations}
-		        allEvents={allEvents}
-	              />
-	              <hr/><hr/><br/>
+		  <br/><hr/><hr/>
+		  <p>Will be removed in final project:</p>
+		  <div className="charts-container">
+		    <EventGenresChart
+		      graphedEvents={locationFilteredEvents}
+		    />
+		    <CityEventsChart
+		      allLocations={allLocations}
+		      graphedEvents={locationFilteredEvents}
+	            />
+		  </div>
+		  <hr/><hr/><br/>
 
-	              <EventList
-	                allEvents={allEvents}
-	              /></div>
+	          <EventList
+	            allEvents={allEvents}
+	          />
+	        </div>
 	      )}
 	
 	    </div>
