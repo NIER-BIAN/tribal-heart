@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/emacs,macos,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs,macos,python
 
+# env
+aws_accesskeys.csv
+GoogleOAuthCliendCredentials.json
 
 # production
 /build
