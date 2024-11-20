@@ -4,29 +4,29 @@ Tribal Heart is serverless, Meet-Up-like PWA written with AWS Lambda, React, and
 
 This project includes test suites written with React Testing library, Jest (unit & integration tests), Cucumber (acceptance tests), and Puppeteer (end-to-end testing).
 
-## OAuth flow of project:
+## OAuth flow of project
 
 <p align="center">
   <img src="img/arch_diagram.png" width="800">
 </p>
 
-## Dev:
+## Dev
 
 The file api.js is is designed to detect when the application is running locally. It will then serve mock data from mock-data.js for dev / testing purposes.
 
-- Run the development server:
+Run the development server:
 
 ```bash
 npm run start
 ```
 
-- Run test suites: (Note - For the end-to-end test suite to run successfully, ensure a local version of the app is running on port 3000)
+Run test suites: (Note - For the end-to-end test suite to run successfully, ensure a local version of the app is running on port 3000)
 
 ```bash
 npm run test
 ```
 
-- Deploy to the gh-pages branch:
+Deploy to the gh-pages branch:
 
 ```bash
 npm run deploy
