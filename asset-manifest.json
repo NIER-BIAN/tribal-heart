@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/tribal-heart/static/css/main.8f5d9e41.css",
+    "main.css": "/tribal-heart/static/css/main.83790db9.css",
     "main.js": "/tribal-heart/static/js/main.d7377889.js",
     "static/js/453.1194976f.chunk.js": "/tribal-heart/static/js/453.1194976f.chunk.js",
     "service-worker.js": "/tribal-heart/service-worker.js",
     "index.html": "/tribal-heart/index.html",
-    "main.8f5d9e41.css.map": "/tribal-heart/static/css/main.8f5d9e41.css.map",
+    "main.83790db9.css.map": "/tribal-heart/static/css/main.83790db9.css.map",
     "main.d7377889.js.map": "/tribal-heart/static/js/main.d7377889.js.map",
     "453.1194976f.chunk.js.map": "/tribal-heart/static/js/453.1194976f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f5d9e41.css",
+    "static/css/main.83790db9.css",
     "static/js/main.d7377889.js"
   ]
 }
