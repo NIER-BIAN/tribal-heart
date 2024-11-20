@@ -155,7 +155,7 @@ a:hover, a:focus {
 }
 
 .page-navigation p {
-    min-width: 110px;
+    min-width: 70px;
 }
 
 .page-navigation button:hover {

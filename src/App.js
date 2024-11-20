@@ -165,7 +165,12 @@ const App = () => {
 	        <div>
 		      
 		  <br/><hr/><hr/>
-		  <p>Will be removed in final project:</p>
+		  {
+		    currentCity==='See all cities'
+		    ? <h3>People everywhere are hosting tech events about...</h3>
+		    : <h3>People in {currentCity} are hosting tech events about...</h3>
+		  }
+		  
 		  <div className="charts-container">
 		    <EventGenresChart
 		      graphedEvents={locationFilteredEvents}
@@ -177,6 +182,12 @@ const App = () => {
 		  </div>
 		  <hr/><hr/><br/>
 
+		  {
+		    currentCity==='See all cities'
+		    ? <h1>All Events everywhere:</h1>
+		    :  <h1>All Events in {currentCity}:</h1>
+		  }
+		  
 	          <EventList
 	            allEvents={allEvents}
 	          />
