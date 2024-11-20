@@ -32,6 +32,14 @@ Deploy to the gh-pages branch:
 npm run deploy
 ```
 
+If gh-pages deployment does not seem to affect repo despite providing a success message when the previous command completed:
+
+```
+git push origin --delete gh-pages
+```
+
+Then, rerun `npm run deploy` (command will also automatically create the gH-pages branch if it doesn’t exist).
+
 ---
 
 中甴曱甲串申由田㗊𣊫㽬
