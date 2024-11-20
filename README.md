@@ -1,6 +1,6 @@
 # Tribal Heart
 
-Tribal Heart is serverless, Meet-Up-like PWA written with React, and Recharts on the frontend. The application makes contact with the Google Calendar API to fetch upcoming events. Users can filter events by location, specify number of events displayed per page, use the app when offline, and add an app shortcut to their home screen. A chart is also displayed visualising the different categories of events at the location(s) of concern. Note that when offline, the app will display cached event data. Filtering events for a new location would require internet connection.
+Tribal Heart is serverless, Meet-Up-like PWA written with AWS Lambda, React, and Recharts on the frontend. The application makes contact with the Google Calendar API to fetch upcoming events. Users can filter events by location, specify number of events displayed per page, use the app when offline, and add an app shortcut to their home screen. A chart is also displayed visualising the different categories of events at the location(s) of concern. Note that when offline, the app will display cached event data. Filtering events for a new location would require internet connection.
 
 This project includes test suites written with React Testing library, Jest (unit & integration tests), Cucumber (acceptance tests), and Puppeteer (end-to-end testing).
 
